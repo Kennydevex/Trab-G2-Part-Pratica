@@ -1,0 +1,69 @@
+object Form1: TForm1
+  Left = 315
+  Height = 248
+  Top = 250
+  Width = 621
+  Caption = 'FCriarJogo'
+  ClientHeight = 248
+  ClientWidth = 621
+  object DateTimePicker1: TDateTimePicker
+    Left = 24
+    Height = 23
+    Top = 128
+    Width = 83
+    CenturyFrom = 1941
+    MaxDate = 2958465
+    MinDate = -53780
+    TabOrder = 0
+    TrailingSeparator = False
+    TextForNullDate = 'NULL'
+    LeadingZeros = True
+    Kind = dtkDate
+    TimeFormat = tf24
+    TimeDisplay = tdHMS
+    DateMode = dmComboBox
+    Date = 43738
+    Time = 0.956948194441793
+    UseDefaultSeparators = True
+    HideDateTimeParts = []
+    MonthNames = 'Long'
+  end
+  object StaticText1: TStaticText
+    Left = 272
+    Height = 17
+    Top = 56
+    Width = 81
+    Caption = 'Agendar Jogo'
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 529
+    Height = 25
+    Top = 192
+    Width = 75
+    Caption = 'Guardar'
+    TabOrder = 2
+  end
+  object DBComboBox1: TDBComboBox
+    Left = 24
+    Height = 23
+    Top = 96
+    Width = 256
+    DataField = 'nome'
+    DataSource = FMain.DadosEquipas
+    ItemHeight = 15
+    MaxLength = 0
+    TabOrder = 3
+  end
+  object DBComboBox2: TDBComboBox
+    Left = 288
+    Height = 23
+    Top = 96
+    Width = 316
+    DataField = 'nome'
+    DataSource = FMain.DadosEquipas
+    ItemHeight = 15
+    MaxLength = 0
+    TabOrder = 4
+  end
+end

@@ -1,0 +1,21 @@
+object FListarJogadores: TFListarJogadores
+  Left = 297
+  Height = 353
+  Top = 27
+  Width = 765
+  BorderStyle = bsDialog
+  Caption = 'Lista de Jogadores'
+  ClientHeight = 353
+  ClientWidth = 765
+  object DBGrid1: TDBGrid
+    Left = 0
+    Height = 268
+    Top = 40
+    Width = 765
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <>
+    DataSource = FMain.DadosJogadores
+    TabOrder = 0
+  end
+end

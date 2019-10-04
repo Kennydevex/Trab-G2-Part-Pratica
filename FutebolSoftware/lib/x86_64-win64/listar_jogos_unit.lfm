@@ -1,0 +1,8 @@
+object FListarJogos: TFListarJogos
+  Left = 315
+  Height = 240
+  Top = 250
+  Width = 320
+  Caption = 'Lista de Jogos'
+  LCLVersion = '2.0.4.0'
+end

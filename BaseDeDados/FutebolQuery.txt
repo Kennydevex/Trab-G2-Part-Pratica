@@ -1,0 +1,105 @@
+/*Grupo 2 - Esfanio Silva Dorilene Lamas, João Alves*/
+
+
+CREATE DATABASE futebol_db;
+
+CREATE TABLE equipas(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	nome VARCHAR(60) NOT NULL UNIQUE,
+	fundacao DATE NULL,
+);
+
+CREATE TABLE posicoes(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	designacao VARCHAR(50) NOT NULL UNIQUE,
+);
+
+CREATE TABLE jogos(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	id_equipa_a INT,
+	id_equipa_b INT,
+	data_jogo DATE NULL,
+	resultado VARCHAR(10) NULL,
+
+	CONSTRAINT FK_equipa_a FOREIGN KEY (id_equipa_a) REFERENCES equipas(id) 
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION,
+
+	CONSTRAINT FK_equipa_b FOREIGN KEY (id_equipa_b) REFERENCES equipas(id) 
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION,
+);
+
+CREATE TABLE jogadores(
+	id INT IDENTITY(1,1) PRIMARY KEY,
+	nome VARCHAR(60) NOT NULL,
+	apelido VARCHAR(60) NOT NULL,
+	numero INT NOT NULL UNIQUE,
+	data_nascimento DATE NULL,
+	telefone VARCHAR(20) NOT NULL UNIQUE,
+	email VARCHAR(100) NULL UNIQUE,
+	nif INT NOT NULL,
+	id_equipa INT,
+	CONSTRAINT FK_equipa_jogadores FOREIGN KEY (id_equipa)
+    REFERENCES equipas(id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+);
+
+
+CREATE TABLE ocupacao(
+	jogador_id INT,
+	posicao_id INT,
+	jogo_id INT,
+
+	CONSTRAINT FK_jogador_posicao_jogo FOREIGN KEY (jogador_id) REFERENCES jogadores(id) 
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION,
+
+	CONSTRAINT FK_posicao_jogo_jogador FOREIGN KEY (posicao_id) REFERENCES posicoes(id) 
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION,
+
+	CONSTRAINT FK_jogo_posicao_jogador FOREIGN KEY (jogo_id) REFERENCES jogos(id) 
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION,
+);
+
+CREATE TABLE convocatoria(
+	jogo_id INT,
+	jogador_id INT,
+	equipa_id INT,
+	data_jogo DATE NULL,
+	confirmacao BIT NOT NULL DEFAULT (0)
+);
+
+INSERT INTO equipas(nome, fundacao) VALUES
+('Mindelense', '03/02/1987'),
+('Sporting', '03/02/1967'),
+('Académica da Praia', '03/02/1954'),
+('SC Nhagar', '03/02/1997'),
+('Os Onze', '03/02/1987');
+
+
+INSERT INTO posicoes(designacao) VALUES
+('Lateral Esquerdo'),
+('Central'),
+('Meio Campo'),
+('Ponta de  Lança'),
+('Ala Direito');
+
+INSERT INTO jogadores(nome, apelido, numero, data_nascimento, telefone, email, nif, id_equipa) VALUES
+('Helton', 'Gomes', 27, '03/02/1987', '+239 917-87-23', 'helton@gmail.com', 124546344, 1),
+('Jorge', 'Silva', 17, '04/06/1997', '+239 913-91-63', 'jorges@gmail.com', 897656453, 3),
+('Kelton', 'Perreira', 21, '06/12/1985', '+239 937-81-83', 'kelton@gmail.com', 345765874, 4),
+('Julio', 'Verissimo', 11, '01/03/1985', '+239 927-80-30', 'juliov@gmail.com', 765432512,2),
+('Adilson', 'Horta', 03, '04/02/2000', '+239 917-88-09', 'adihort@gmail.com', 676453214,5),
+('Sandro', 'Sanches', 14, '10/12/1997', '+239 917-87-02', 'sandros@gmail.com', 124546344,4);
+
+INSERT INTO jogos(id_equipa_a,id_equipa_b, data_jogo, resultado) VALUES
+(1, 2, '03/02/1987', '');
+
+INSERT INTO ocupacao(jogador_id,posicao_id, jogo_id) VALUES
+(7, 2, 1),
+(11, 4, 1);
+

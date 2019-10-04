@@ -1,0 +1,299 @@
+object FMain: TFMain
+  Left = 316
+  Height = 457
+  Top = 250
+  Width = 825
+  Caption = 'Principal'
+  ClientHeight = 457
+  ClientWidth = 825
+  Menu = MainMenu1
+  object DBGrid1: TDBGrid
+    Left = 8
+    Height = 168
+    Top = 40
+    Width = 808
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <>
+    DataSource = DadosJogadores
+    TabOrder = 0
+  end
+  object StaticText1: TStaticText
+    Left = 8
+    Height = 17
+    Top = 16
+    Width = 129
+    Caption = 'Lista de Jogadores'
+    TabOrder = 1
+  end
+  object btnNovoj: TButton
+    Left = 741
+    Height = 25
+    Top = 8
+    Width = 75
+    Caption = 'Novo'
+    OnClick = btnNovojClick
+    TabOrder = 2
+  end
+  object StaticText2: TStaticText
+    Left = 8
+    Height = 17
+    Top = 224
+    Width = 129
+    Caption = 'Lista de Jogadores'
+    TabOrder = 3
+  end
+  object DBGrid2: TDBGrid
+    Left = 8
+    Height = 192
+    Top = 248
+    Width = 424
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <>
+    DataSource = DadosEquipas
+    TabOrder = 4
+  end
+  object StaticText3: TStaticText
+    Left = 440
+    Height = 17
+    Top = 224
+    Width = 129
+    Caption = 'Lista de Jogadores'
+    TabOrder = 5
+  end
+  object DBGrid3: TDBGrid
+    Left = 440
+    Height = 192
+    Top = 248
+    Width = 376
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <>
+    DataSource = DadosPosicoes
+    TabOrder = 6
+  end
+  object MainMenu1: TMainMenu
+    top = 288
+    object MenuItem1: TMenuItem
+      Caption = 'Ficheiro'
+      object MenuItem2: TMenuItem
+        Caption = 'Sair'
+        OnClick = MenuItem2Click
+      end
+    end
+    object MenuItem3: TMenuItem
+      Caption = 'Jogos'
+      object MenuItem10: TMenuItem
+        Caption = 'Novo'
+      end
+      object MenuItem11: TMenuItem
+        Caption = 'Listar'
+        OnClick = MenuItem11Click
+      end
+    end
+    object MenuItem4: TMenuItem
+      Caption = 'Equipas'
+      object MenuItem12: TMenuItem
+        Caption = 'Novo'
+        OnClick = MenuItem12Click
+      end
+      object MenuItem13: TMenuItem
+        Caption = 'Listar'
+        OnClick = MenuItem13Click
+      end
+    end
+    object MenuItem5: TMenuItem
+      Caption = 'Jogadores'
+      object MenuItem8: TMenuItem
+        Caption = 'Novo'
+      end
+      object MenuItem9: TMenuItem
+        Caption = 'Listar'
+      end
+    end
+    object MenuItem6: TMenuItem
+      Caption = 'Convocatoria'
+      object MenuItem14: TMenuItem
+        Caption = 'Registar'
+      end
+    end
+    object MenuItem7: TMenuItem
+      Caption = 'Posições'
+      object MenuItem15: TMenuItem
+        Caption = 'Criar'
+        OnClick = MenuItem15Click
+      end
+    end
+  end
+  object DBCon: TMSSQLConnection
+    Connected = True
+    LoginPrompt = False
+    DatabaseName = 'futebol_db'
+    KeepConnection = False
+    Password = '88008800'
+    Transaction = DBTran
+    UserName = 'Estefanio.Silva'
+    HostName = 'DESKTOP-1C4RIGV'
+    left = 784
+    top = 400
+  end
+  object DBTran: TSQLTransaction
+    Active = True
+    Database = DBCon
+    left = 744
+    top = 400
+  end
+  object ListarJogadores: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'nome'
+        DataType = ftString
+        Precision = -1
+        Size = 240
+      end    
+      item
+        Name = 'apelido'
+        DataType = ftString
+        Precision = -1
+        Size = 240
+      end    
+      item
+        Name = 'numero'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'data_nascimento'
+        DataType = ftString
+        Precision = -1
+        Size = 40
+      end    
+      item
+        Name = 'telefone'
+        DataType = ftString
+        Precision = -1
+        Size = 80
+      end    
+      item
+        Name = 'email'
+        DataType = ftString
+        Precision = -1
+        Size = 400
+      end    
+      item
+        Name = 'nif'
+        DataType = ftInteger
+        Precision = -1
+      end    
+      item
+        Name = 'id_equipa'
+        DataType = ftInteger
+        Precision = -1
+      end>
+    Active = True
+    Database = DBCon
+    Transaction = DBTran
+    SQL.Strings = (
+      'select * from jogadores'
+    )
+    Params = <>
+    left = 704
+    top = 400
+  end
+  object DadosJogadores: TDataSource
+    DataSet = ListarJogadores
+    left = 632
+    top = 400
+  end
+  object DadosEquipas: TDataSource
+    DataSet = QListarEquipas
+    left = 520
+    top = 384
+  end
+  object QListarEquipas: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'nome'
+        DataType = ftString
+        Precision = -1
+        Size = 240
+      end    
+      item
+        Name = 'fundacao'
+        DataType = ftString
+        Precision = -1
+        Size = 40
+      end>
+    Active = True
+    Database = DBCon
+    Transaction = DBTran
+    SQL.Strings = (
+      'select * from equipas'
+    )
+    Params = <>
+    left = 418
+    top = 409
+  end
+  object QCommon: TSQLQuery
+    FieldDefs = <>
+    Database = DBCon
+    Transaction = DBTran
+    Params = <>
+    left = 752
+    top = 336
+  end
+  object DadosDinamicos: TDataSource
+    DataSet = QCommon
+    left = 136
+    top = 392
+  end
+  object DadosPosicoes: TDataSource
+    DataSet = ListarPosicoes
+    left = 338
+    top = 413
+  end
+  object ListarPosicoes: TSQLQuery
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'id'
+        Attributes = [faReadonly]
+        DataType = ftAutoInc
+        Precision = -1
+      end    
+      item
+        Name = 'designacao'
+        DataType = ftString
+        Precision = -1
+        Size = 200
+      end>
+    Active = True
+    Database = DBCon
+    Transaction = DBTran
+    SQL.Strings = (
+      'select * from posicoes'
+    )
+    Params = <>
+    left = 208
+    top = 410
+  end
+  object Timer1: TTimer
+    left = 94
+    top = 448
+  end
+end

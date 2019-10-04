@@ -1,0 +1,8 @@
+object FCriarPosicao: TFCriarPosicao
+  Left = 315
+  Height = 240
+  Top = 250
+  Width = 320
+  Caption = 'Criar Posição'
+  LCLVersion = '2.0.4.0'
+end
